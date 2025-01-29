@@ -34,8 +34,13 @@ public class SensorAdapter extends RecyclerView.Adapter<SensorAdapter.ViewHolder
         holder.sensorNameTextView.setText(item.getName());
         holder.sensorValueTextView.setText("Valeur: " + item.getValue() + " " + item.getUnit());
 
-        int progressValue = (int) Math.round(Math.max(0, Math.min(100, item.getValue())));
-        holder.progressBar.setProgress(progressValue);
+        if ("Humidité".equals(item.getName())) {
+            int progressValue = (int) Math.round(Math.max(0, Math.min(100, item.getValue())));
+            holder.progressBar.setProgress(progressValue);
+            holder.progressBar.setVisibility(View.VISIBLE);
+        } else {
+            holder.progressBar.setVisibility(View.GONE);
+        }
     }
 
     @Override
